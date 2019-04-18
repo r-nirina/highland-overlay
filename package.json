@@ -1,35 +1,51 @@
 {
-  "name": "highland-overlay",
-  "version": "0.1.0",
-  "description": "Encore un autre skin ACT ! 🌈",
-  "keywords": [
-    "act",
-    "ffxiv",
-    "highland",
-    "skin",
-    "overlay"
-  ],
-  "homepage": "https://github.com/r-nirina/highland-overlay",
-  "bugs": {
-    "email": "randy.andriamaro@outlook.fr",
-    "url": "https://github.com/r-nirina/highland-overlay/issues"
-  },
-  "license": "MIT",
-  "private": true,
-  "author": {
-    "name": "Randy Andriamaro",
-    "email": "randy.andriamaro@outlook.fr",
-    "url": "https://github.com/r-nirina"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/r-nirina/highland-overlay.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "vue": "^2.6.10",
-    "vuex": "^3.1.0"
-  }
+	"name": "highland-overlay",
+	"version": "0.1.0",
+	"description": "Encore un autre skin ACT ! 🌈",
+	"keywords": [
+		"act",
+		"ffxiv",
+		"highland",
+		"skin",
+		"overlay"
+	],
+	"homepage": "https://github.com/r-nirina/highland-overlay",
+	"bugs": {
+		"email": "randy.andriamaro@outlook.fr",
+		"url": "https://github.com/r-nirina/highland-overlay/issues"
+	},
+	"license": "MIT",
+	"private": true,
+	"author": {
+		"name": "Randy Andriamaro",
+		"email": "randy.andriamaro@outlook.fr",
+		"url": "https://github.com/r-nirina"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/r-nirina/highland-overlay.git"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack",
+		"watch": "webpack --watch"
+	},
+	"dependencies": {
+		"node-sass": "^4.11.0",
+		"vue": "^2.6.10",
+		"vuex": "^3.1.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.4.3",
+		"@babel/preset-env": "^7.4.3",
+		"babel-loader": "^8.0.5",
+		"css-loader": "^2.1.0",
+		"file-loader": "^3.0.1",
+		"sass-loader": "^7.1.0",
+		"style-loader": "^0.23.1",
+		"vue-loader": "^15.6.4",
+		"vue-template-compiler": "^2.6.6",
+		"webpack": "^4.30.0",
+		"webpack-cli": "^3.3.0"
+	}
 }
