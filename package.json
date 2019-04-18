@@ -28,7 +28,7 @@
 	"scripts": {
 		"build": "webpack",
 		"watch": "webpack --watch",
-		"clean": "rm dist/*",
+		"clean": "rm -r dist/*",
 		"test": "npm run eslint",
 		"eslint": "eslint --color src/",
 		"eslint-fix": "eslint --color --fix src/",
