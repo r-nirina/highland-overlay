@@ -35,12 +35,15 @@
 		"lint": "npm run eslint-fix"
 	},
 	"dependencies": {
+		"@babel/polyfill": "^7.4.3",
+		"core-js": "^3.0.1",
 		"vue": "^2.6.10",
 		"vuex": "^3.1.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.3",
 		"@babel/preset-env": "^7.4.3",
+		"@babel/register": "^7.4.0",
 		"babel-loader": "^8.0.5",
 		"css-loader": "^2.1.0",
 		"eslint": "^5.16.0",
