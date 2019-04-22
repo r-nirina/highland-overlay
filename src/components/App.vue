@@ -1,16 +1,38 @@
 <template>
-<div class="app">
-	<h1>Highland Overlay</h1>
-</div>
+	<div class="app">
+		<CombatantData
+			v-for="combatant in combatants"
+			:key="combatant['name']"
+			v-bind:name="combatant['name']"
+			v-bind:dps="combatant['dps']"
+		/>
+	</div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex"
+import CombatantData from "./CombatantData.vue"
+
 export default {
 	name: "App",
-	components: {},
+
+	components: {
+		CombatantData
+	},
+
 	data: () => ({}),
-	mounted() {},
-	methods: {}
+
+	computed: {
+		...mapState("data", [ "combatants" ])
+	},
+
+	mounted() {
+		this.initActListener()
+	},
+
+	methods: {
+		...mapActions("act", [ "initActListener" ])
+	}
 }
 </script>
 
@@ -28,8 +50,10 @@ export default {
 }
 
 html {
-	height:   100%;
-	width:    100%;
+	height:             100%;
+	width:              100%;
+	background-color:   rgba(0, 0, 0, 0.5);
+	color:              #ffffff;
 
 	body {
 		height:   100%;
