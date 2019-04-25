@@ -3,8 +3,7 @@
 		<CombatantData
 			v-for="combatant in combatants"
 			:key="combatant['name']"
-			v-bind:name="combatant['name']"
-			v-bind:dps="combatant['dps']"
+			v-bind="combatant"
 		/>
 	</div>
 </template>
