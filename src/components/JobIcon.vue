@@ -1,9 +1,10 @@
 <template>
-    <img
-        class="job-icon"
-        :src="jobIcon"
-        :alt="job"
-    />
+    <div class="job-icon">
+        <img
+            :src="jobIcon"
+            :alt="job"
+        />
+    </div>
 </template>
 
 <script>
@@ -130,7 +131,16 @@ export default {
 
 <style lang="scss" scoped>
 .job-icon {
-    width: 30px;
-    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        max-width: 24px;
+        width: auto;
+        max-height: 24px;
+        height: auto;
+    }
 }
 </style>

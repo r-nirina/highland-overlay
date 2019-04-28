@@ -41,6 +41,7 @@ export default {
 
 * {
 	font-family:   'Ubuntu', sans-serif;
+	font-size:     12px;
 	box-sizing:    border-box;
 	margin:        0;
 	padding:       0;
