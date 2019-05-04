@@ -3,12 +3,15 @@ import {
 	retrieveEncounterData,
 	calculateRelativeDps,
 	retrieveMaxDps,
-	rankByDps
+	rankByDps,
 } from "../utils/transforms"
 
 const getInitialState = () => ({
 	combatants: [],
-	encounter: null,
+	encounter: {
+		title: "",
+		duration: "",
+	},
 })
 
 const namespaced = true

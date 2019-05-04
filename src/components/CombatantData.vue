@@ -32,7 +32,7 @@ export default {
 		job: String,
 		role: String,
 		relativeDps: Number,
-	}
+	},
 }
 </script>
 
@@ -89,6 +89,7 @@ export default {
 			flex-direction: row;
 			justify-content: flex-start;
 			align-items: stretch;
+			height: 100%;
 
 			.job {
 				padding: 4px;
@@ -101,9 +102,10 @@ export default {
 				justify-content: space-between;
 				align-items: center;
 
-				.name {}
-
-				.dps {}
+				.name,
+				.dps {
+					padding: 0 6px;
+				}
 			}
 		}
 	}

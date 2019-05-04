@@ -1,5 +1,6 @@
 <template>
 	<div class="app">
+		<EncounterData />
 		<CombatantData
 			v-for="combatant in combatants"
 			:key="combatant['name']"
@@ -11,18 +12,20 @@
 <script>
 import { mapActions, mapState } from "vuex"
 import CombatantData from "./CombatantData.vue"
+import EncounterData from "./EncounterData.vue"
 
 export default {
 	name: "App",
 
 	components: {
-		CombatantData
+		CombatantData,
+		EncounterData,
 	},
 
 	data: () => ({}),
 
 	computed: {
-		...mapState("data", [ "combatants" ])
+		...mapState("data", [ "combatants" ]),
 	},
 
 	mounted() {
@@ -30,8 +33,8 @@ export default {
 	},
 
 	methods: {
-		...mapActions("act", [ "initActListener" ])
-	}
+		...mapActions("act", [ "initActListener" ]),
+	},
 }
 </script>
 
