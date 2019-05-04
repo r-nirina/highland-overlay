@@ -1,4 +1,10 @@
-import { retrieveCombatantData, retrieveEncounterData } from "../utils/transforms"
+import {
+	retrieveCombatantData,
+	retrieveEncounterData,
+	calculateRelativeDps,
+	retrieveMaxDps,
+	rankByDps
+} from "../utils/transforms"
 
 const getInitialState = () => ({
 	combatants: [],
@@ -24,9 +30,14 @@ const mutations = {
 const actions = {
 	updateData({ commit }, encounterData) {
 		const combatants = Object.values(encounterData["Combatant"])
-			.slice(0, 8)
 			.map(retrieveCombatantData)
-		commit("updateCombatantsData", combatants)
+			.sort(rankByDps)
+			.reverse()
+			.slice(0, 8)
+		const maxDps = retrieveMaxDps(combatants)
+		const combatantsDataCompleted = combatants
+			.map(calculateRelativeDps(maxDps))
+		commit("updateCombatantsData", combatantsDataCompleted)
 
 		const encounter = retrieveEncounterData(encounterData["Encounter"])
 		commit("updateEncounterData", encounter)

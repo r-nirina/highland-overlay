@@ -1,10 +1,17 @@
 <template>
 	<div class="combatant-data">
 		<div :class="[ 'role', role ]"></div>
-		<JobIcon class="job" :job="job" />
-		<div class="details">
-			<div class="name">{{ name }}</div>
-			<div class="dps">{{ dps }}</div>
+		<div class="info-wrapper">
+			<div class="dps-bar-wrapper">
+				<div class="bar" :style="{ width: `${relativeDps}%` }"></div>
+			</div>
+			<div class="dps-info">
+				<JobIcon class="job" :job="job" />
+				<div class="details">
+					<div class="name">{{ name }}</div>
+					<div class="dps">{{ dps }}</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -24,6 +31,7 @@ export default {
 		dps: Number,
 		job: String,
 		role: String,
+		relativeDps: Number,
 	}
 }
 </script>
@@ -39,6 +47,7 @@ export default {
 
 	.role {
 		width: 4px;
+		background-color: #000000;
 
 		&.tank {
 			background-color: #4a6bda;
@@ -47,24 +56,53 @@ export default {
 			background-color: #3baa4a;
 		}
 		&.melee {
-			background-color: #aa3b3b;
+			background-color: #be5050;
 		}
 		&.ranged {
-			background-color: #dbb242;
+			background-color: #dfaa55;
 		}
 		&.caster {
-			background-color: #914194;
+			background-color: #8e65a1;
 		}
 	}
 
-	.job {
-		padding: 4px;
+	.info-wrapper {
+		flex: 1;
+
+		.dps-bar-wrapper {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			overflow: hidden;
+
+			.bar {
+				height: 100%;
+				background-color: rgba(0, 115, 150, 0.3);
+				transition: width 240ms linear 60ms;
+			}
+		}
+
+		.dps-info {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: stretch;
+
+			.job {
+				padding: 4px;
+			}
+
+			.details {
+				flex: 1;
+
+				.name {}
+
+				.dps {}
+			}
+		}
 	}
 
-	.details {
-		.name {}
-
-		.dps {}
-	}
 }
 </style>

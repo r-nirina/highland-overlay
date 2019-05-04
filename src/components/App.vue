@@ -47,12 +47,13 @@ export default {
 	padding:       0;
 	outline:       none;
 	user-select:   none;
+	position:      relative;
 }
 
 html {
 	height:             100%;
 	width:              100%;
-	background-color:   rgba(0, 0, 0, 0.5);
+	background-color:   rgba(0, 0, 0, 0.6);
 	color:              #ffffff;
 
 	body {
