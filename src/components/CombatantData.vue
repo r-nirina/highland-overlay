@@ -47,7 +47,7 @@ export default {
 
 	.role {
 		width: 4px;
-		background-color: #000000;
+		// background-color: #000000;
 
 		&.tank {
 			background-color: #4a6bda;
@@ -96,6 +96,10 @@ export default {
 
 			.details {
 				flex: 1;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
 
 				.name {}
 

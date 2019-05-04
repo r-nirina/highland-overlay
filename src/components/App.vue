@@ -41,19 +41,19 @@ export default {
 
 * {
 	font-family:   'Ubuntu', sans-serif;
-	font-size:     12px;
+	font-size:     14px;
 	box-sizing:    border-box;
 	margin:        0;
 	padding:       0;
 	outline:       none;
 	user-select:   none;
 	position:      relative;
+	line-height:   1;
 }
 
 html {
 	height:             100%;
 	width:              100%;
-	background-color:   rgba(0, 0, 0, 0.6);
 	color:              #ffffff;
 
 	body {
@@ -63,6 +63,10 @@ html {
 		ul,
 		ol {
 			list-style:   none;
+		}
+
+		.app {
+			background-color:   rgba(0, 0, 0, 0.6);
 		}
 	}
 }
