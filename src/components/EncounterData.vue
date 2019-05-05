@@ -23,14 +23,14 @@ export default {
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	border-bottom: solid 2px rgba(0, 115, 150, 0.7);
+	border-bottom: solid 1px rgba(0, 223, 223, 0.7);
 
 	.duration {
 		padding: 0 12px;
 		line-height: 1.6;
 		min-width: 72px;
 		text-align: center;
-		border-right: solid 2px rgba(0, 115, 150, 0.7);
+		border-right: solid 1px rgba(0, 223, 223, 0.7);
 		line-height: 42px;
 	}
 

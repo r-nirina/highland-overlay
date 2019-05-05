@@ -81,6 +81,7 @@ export default {
 				height: 100%;
 				background-color: rgba(0, 115, 150, 0.3);
 				transition: width 240ms linear 60ms;
+				border-right: solid 1px rgba(0, 223, 223, 0.7);
 			}
 		}
 
