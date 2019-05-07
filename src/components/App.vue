@@ -1,10 +1,11 @@
 <template>
-	<div class="app">
+	<div :class="[ 'app', isActive ? 'active' : '' ]">
 		<EncounterData />
 		<CombatantData
 			v-for="combatant in combatants"
 			:key="combatant['name']"
 			v-bind="combatant"
+			class="combatant"
 		/>
 	</div>
 </template>
@@ -25,6 +26,7 @@ export default {
 	data: () => ({}),
 
 	computed: {
+		...mapState("act", [ "isActive" ]),
 		...mapState("data", [ "combatants" ]),
 	},
 
@@ -70,6 +72,16 @@ html {
 
 		.app {
 			background-color:   rgba(0, 0, 0, 0.6);
+			opacity: 0;
+			transition: opacity 360ms ease-out;
+
+			&.active {
+				opacity: 1;
+			}
+
+			.combatant:not(:last-of-type) {
+				border-bottom: solid 1px rgba(0, 0, 0, 0.8);
+			}
 		}
 	}
 }

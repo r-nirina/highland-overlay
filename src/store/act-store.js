@@ -1,4 +1,6 @@
-const getInitialState = () => ({})
+const getInitialState = () => ({
+	isActive: false,
+})
 
 const namespaced = true
 
@@ -6,7 +8,11 @@ const state = getInitialState()
 
 const getters = {}
 
-const mutations = {}
+const mutations = {
+	setActActivityState(state, isActive) {
+		state.isActive = isActive
+	},
+}
 
 const actions = {
 	initActListener({ dispatch }) {

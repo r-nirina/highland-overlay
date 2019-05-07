@@ -31,8 +31,8 @@ const mutations = {
 }
 
 const actions = {
-	updateData({ commit }, encounterData) {
-		const combatants = Object.values(encounterData["Combatant"])
+	updateData({ commit }, actData) {
+		const combatants = Object.values(actData["Combatant"])
 			.map(retrieveCombatantData)
 			.sort(rankByDps)
 			.reverse()
@@ -42,8 +42,10 @@ const actions = {
 			.map(calculateRelativeDps(maxDps))
 		commit("updateCombatantsData", combatantsDataCompleted)
 
-		const encounter = retrieveEncounterData(encounterData["Encounter"])
+		const encounter = retrieveEncounterData(actData["Encounter"])
 		commit("updateEncounterData", encounter)
+
+		commit("act/setActActivityState", actData["isActive"] || false, { root: true })
 	},
 }
 
