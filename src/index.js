@@ -3,7 +3,10 @@ import Vue from "vue"
 import App from "./components/App.vue"
 import store from "./store"
 
-Vue.config.productionTip = false
+if (process.env.NODE_ENV === "production") {
+	Vue.config.devtools = false
+	Vue.config.productionTip = false
+}
 
 new Vue({
 	el: "#app",

@@ -26,7 +26,7 @@
 		"url": "https://github.com/r-nirina/highland-overlay.git"
 	},
 	"scripts": {
-		"build": "webpack",
+		"build": "webpack -p",
 		"watch": "webpack --watch",
 		"clean": "rm -r dist/*",
 		"test": "npm run eslint",
