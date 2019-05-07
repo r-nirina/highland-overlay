@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .combatant-data {
-	min-height: 32px;
+	min-height: 30px;
 	width: 100%;
 	display: flex;
 	flex-direction: row;

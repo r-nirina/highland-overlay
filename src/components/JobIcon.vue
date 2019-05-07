@@ -137,9 +137,9 @@ export default {
     align-items: center;
 
     img {
-        max-width: 24px;
+        max-width: 20px;
         width: auto;
-        max-height: 24px;
+        max-height: 20px;
         height: auto;
     }
 }
