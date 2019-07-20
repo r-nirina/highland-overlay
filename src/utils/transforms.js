@@ -5,11 +5,11 @@ export function parseDpsString(dpsString) {
 
 export function getRole(jobString) {
 	const roles = Object.entries({
-		tank: [ "pld", "war", "drk" ],
+		tank: [ "pld", "war", "drk", "gnb" ],
 		healer: [ "whm", "sch", "ast" ],
 		melee: [ "mnk", "drg", "nin", "sam" ],
-		ranged: [ "brd", "mch" ],
-		caster: [ "blm", "smn", "rdm" ],
+		ranged: [ "brd", "mch", "dnc" ],
+		caster: [ "blm", "smn", "rdm", "blu" ],
 	})
 	for (const [ role, jobs ] of roles) {
 		if (jobs.includes(jobString)) return role

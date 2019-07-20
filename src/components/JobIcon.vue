@@ -15,6 +15,7 @@ import arm from "../assets/images/arm.png"
 import ast from "../assets/images/ast.png"
 import bishop from "../assets/images/bishop.png"
 import blm from "../assets/images/blm.png"
+import blu from "../assets/images/blu.png"
 import brd from "../assets/images/brd.png"
 import bsm from "../assets/images/bsm.png"
 import btn from "../assets/images/btn.png"
@@ -23,6 +24,7 @@ import chocobo from "../assets/images/chocobo.png"
 import cnj from "../assets/images/cnj.png"
 import crp from "../assets/images/crp.png"
 import cul from "../assets/images/cul.png"
+import dnc from "../assets/images/dnc.png"
 import drg from "../assets/images/drg.png"
 import drk from "../assets/images/drk.png"
 import emerald from "../assets/images/emerald.png"
@@ -33,6 +35,7 @@ import fsh from "../assets/images/fsh.png"
 import Garuda from "../assets/images/Garuda.png"
 import gla from "../assets/images/gla.png"
 import gld from "../assets/images/gld.png"
+import gnb from "../assets/images/gnb.png"
 import gsm from "../assets/images/gsm.png"
 import Ifrit from "../assets/images/Ifrit.png"
 import LimitBreak from "../assets/images/Limit Break.png"
@@ -68,6 +71,7 @@ const jobIcons = {
     "ast": ast,
     "bishop": bishop,
     "blm": blm,
+    "blu": blu,
     "brd": brd,
     "bsm": bsm,
     "btn": btn,
@@ -76,6 +80,7 @@ const jobIcons = {
     "cnj": cnj,
     "crp": crp,
     "cul": cul,
+    "dnc": dnc,
     "drg": drg,
     "drk": drk,
     "emerald": emerald,
@@ -86,6 +91,7 @@ const jobIcons = {
     "Garuda": Garuda,
     "gla": gla,
     "gld": gld,
+    "gnb": gnb,
     "gsm": gsm,
     "Ifrit": Ifrit,
     "Limit Break": LimitBreak,

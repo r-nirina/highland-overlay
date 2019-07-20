@@ -1,5 +1,5 @@
 <template>
-	<div class="combatant-data">
+	<div :class="[ 'combatant-data', isSelf ? 'you' : '' ]">
 		<div :class="[ 'role', role ]"></div>
 		<div class="info-wrapper">
 			<div class="dps-bar-wrapper">
@@ -33,6 +33,12 @@ export default {
 		role: String,
 		relativeDps: Number,
 	},
+
+	computed: {
+		isSelf: function() {
+			return this.name === "YOU"
+		}
+	}
 }
 </script>
 
@@ -111,5 +117,12 @@ export default {
 		}
 	}
 
+	&.you .info-wrapper {
+		.dps-bar-wrapper {
+			.bar {
+				background-color: rgba(0, 115, 150, 0.356);
+			}
+		}
+	}
 }
 </style>
