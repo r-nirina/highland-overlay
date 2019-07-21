@@ -53,7 +53,6 @@ export default {
 
 	.role {
 		width: 4px;
-		// background-color: #000000;
 
 		&.tank {
 			background-color: #4a6bda;
@@ -61,15 +60,17 @@ export default {
 		&.healer {
 			background-color: #3baa4a;
 		}
-		&.melee {
+		&.melee,
+		&.ranged,
+		&.caster {
 			background-color: #be5050;
 		}
-		&.ranged {
-			background-color: #dfaa55;
-		}
-		&.caster {
-			background-color: #8e65a1;
-		}
+		// &.ranged {
+		// 	background-color: #dfaa55;
+		// }
+		// &.caster {
+		// 	background-color: #8e65a1;
+		// }
 	}
 
 	.info-wrapper {
@@ -120,7 +121,7 @@ export default {
 	&.you .info-wrapper {
 		.dps-bar-wrapper {
 			.bar {
-				background-color: rgba(0, 115, 150, 0.356);
+				background-color: rgba(0, 115, 150, 0.5);
 			}
 		}
 	}
