@@ -25,7 +25,7 @@ export default {
 	border-top: solid 1px rgba(0, 223, 223, 0.7);
 
 	opacity: 1;
-	transition: opacity 360ms ease-out;
+	transition: opacity 360ms ease-out 720ms;
 	&.solo-fight {
 		opacity: 0;
 	}
