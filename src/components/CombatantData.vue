@@ -44,10 +44,10 @@ export default {
 
 <style lang="scss" scoped>
 .combatant-data {
-	min-height: 30px;
+	min-height: 20px;
 	width: 100%;
 	display: flex;
-	flex-direction: row;
+	flex-flow: row nowrap;
 	justify-content: flex-start;
 	align-items: stretch;
 
@@ -94,7 +94,7 @@ export default {
 
 		.dps-info {
 			display: flex;
-			flex-direction: row;
+			flex-flow: row nowrap;
 			justify-content: flex-start;
 			align-items: stretch;
 			height: 100%;
@@ -106,13 +106,14 @@ export default {
 			.details {
 				flex: 1;
 				display: flex;
-				flex-direction: row;
+				flex-flow: row nowrap;
 				justify-content: space-between;
 				align-items: center;
 
 				.name,
 				.dps {
 					padding: 0 6px;
+					font-weight: 100;
 				}
 			}
 		}

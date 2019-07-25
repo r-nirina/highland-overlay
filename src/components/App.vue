@@ -7,13 +7,15 @@
 			v-bind="combatant"
 			class="combatant"
 		/>
+		<RaidData />
 	</div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex"
+import { mapActions, mapState, mapGetters } from "vuex"
 import CombatantData from "./CombatantData.vue"
 import EncounterData from "./EncounterData.vue"
+import RaidData from "./RaidData.vue"
 
 export default {
 	name: "App",
@@ -21,6 +23,7 @@ export default {
 	components: {
 		CombatantData,
 		EncounterData,
+		RaidData,
 	},
 
 	data: () => ({}),
@@ -71,9 +74,12 @@ html {
 		}
 
 		.app {
-			background-color:   rgba(0, 0, 0, 0.6);
 			opacity: 0;
 			transition: opacity 360ms ease-out;
+
+			& > * {
+				background-color:   rgba(0, 0, 0, 0.6);
+			}
 
 			&.active {
 				opacity: 1;

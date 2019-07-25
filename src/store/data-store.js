@@ -18,7 +18,14 @@ const namespaced = true
 
 const state = getInitialState()
 
-const getters = {}
+const getters = {
+	raidDps: (state) => {
+		return state.combatants.reduce((acc, c) => ((c.dps != null) ? (acc + c.dps) : acc), 0)
+	},
+	isSoloFight: (state) => {
+		return state.combatants.length < 2
+	},
+}
 
 const mutations = {
 	updateCombatantsData(state, combatants) {

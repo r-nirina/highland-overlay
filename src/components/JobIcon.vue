@@ -138,7 +138,7 @@ export default {
 <style lang="scss" scoped>
 .job-icon {
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 
