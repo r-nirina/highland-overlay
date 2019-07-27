@@ -75,7 +75,7 @@ html {
 
 		.app {
 			opacity: 0;
-			transition: opacity 360ms ease-out;
+			transition: opacity 360ms ease-out 10s;
 
 			& > * {
 				background-color:   rgba(0, 0, 0, 0.6);
@@ -83,6 +83,7 @@ html {
 
 			&.active {
 				opacity: 1;
+				transition: opacity 360ms ease-out;
 			}
 
 			.combatant:not(:last-of-type) {
