@@ -94,7 +94,7 @@ const jobIcons = {
     "gnb": gnb,
     "gsm": gsm,
     "Ifrit": Ifrit,
-    "Limit Break": LimitBreak,
+    "lb": LimitBreak,
     "lnc": lnc,
     "ltw": ltw,
     "mch": mch,

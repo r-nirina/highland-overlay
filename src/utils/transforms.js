@@ -18,9 +18,13 @@ export function getRole(jobString) {
 }
 
 export function retrieveCombatantData(combatantData) {
+	const jobString = combatantData["Job"].toLowerCase().trim()
+
 	const name = combatantData["name"].trim()
 	const dps = parseDpsString(combatantData["dps"])
-	const job = combatantData["Job"].toLowerCase().trim()
+	const job = (jobString === "" && name === "Limit Break")
+		? "lb"
+		: jobString
 	const role = getRole(job)
 
 	return ({
