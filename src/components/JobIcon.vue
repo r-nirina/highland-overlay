@@ -1,5 +1,5 @@
 <template>
-    <div class="job-icon">
+    <div :class="[ 'job-icon', role ]">
         <img
             :src="jobIcon"
             :alt="job"
@@ -125,6 +125,7 @@ export default {
 
     props: {
         job: String,
+        role: String,
     },
 
     computed: {
@@ -141,6 +142,26 @@ export default {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+
+    &.tank {
+        background-color: rgba(74, 108, 218, 0.5);
+    }
+    &.healer {
+        background-color: rgba(59, 169, 74, 0.5);
+    }
+    &.melee,
+    &.ranged,
+    &.caster {
+        background-color: rgba(190, 80, 80, 0.5);
+    }
+    /*
+    &.ranged {
+    	background-color: rgba(223, 170, 85, 0.5);
+    }
+    &.caster {
+    	background-color: rgba(142, 101, 161, 0.5);
+    }
+    */
 
     img {
         max-width: 20px;

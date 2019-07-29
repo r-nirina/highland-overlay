@@ -1,12 +1,11 @@
 <template>
 	<div :class="[ 'combatant-data', isSelf ? 'you' : '' ]">
-		<div :class="[ 'role', role ]"></div>
 		<div class="info-wrapper">
 			<div class="dps-bar-wrapper">
 				<div class="bar" :style="{ width: `${relativeDps}%` }"></div>
 			</div>
 			<div class="dps-info">
-				<JobIcon class="job" :job="job" />
+				<JobIcon class="job" :job="job" :role="role" />
 				<div class="details">
 					<div class="name">{{ name }}</div>
 					<div class="dps">{{ dps }}</div>
@@ -50,28 +49,6 @@ export default {
 	flex-flow: row nowrap;
 	justify-content: flex-start;
 	align-items: stretch;
-
-	.role {
-		width: 4px;
-
-		&.tank {
-			background-color: #4a6bda;
-		}
-		&.healer {
-			background-color: #3baa4a;
-		}
-		&.melee,
-		&.ranged,
-		&.caster {
-			background-color: #be5050;
-		}
-		// &.ranged {
-		// 	background-color: #dfaa55;
-		// }
-		// &.caster {
-		// 	background-color: #8e65a1;
-		// }
-	}
 
 	.info-wrapper {
 		flex: 1;
