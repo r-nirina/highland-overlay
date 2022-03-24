@@ -4,7 +4,7 @@ const ActXivBefore = {
     "n": "\n",
     "t": "\t",
     "title": "Encounter",
-    "duration": "04:51",
+    "duration": "00:12",
     "DURATION": "291",
     "damage": "31867",
     "damage-m": "0.03",
@@ -1597,7 +1597,7 @@ const ActXivAfter = {
     "n": "\n",
     "t": "\t",
     "title": "Red Belly Gutter",
-    "duration": "02:51",
+    "duration": "04:32",
     "DURATION": "231",
     "damage": "601867",
     "damage-m": "0.03",
@@ -3190,7 +3190,7 @@ const ActXiv = {
     "n": "\n",
     "t": "\t",
     "title": "Encounter",
-    "duration": "04:51",
+    "duration": "02:51",
     "DURATION": "291",
     "damage": "31867",
     "damage-m": "0.03",
@@ -4806,4 +4806,4 @@ const dataIntervalID = setInterval(() => {
       break;
   }
   dataIntervalTracker++;
-}, 3000);
+}, 2000);
