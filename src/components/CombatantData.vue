@@ -36,8 +36,8 @@ export default {
 	computed: {
 		isSelf: function() {
 			return this.name === "YOU"
-		}
-	}
+		},
+	},
 }
 </script>
 
