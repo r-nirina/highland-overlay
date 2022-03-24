@@ -1,20 +1,12 @@
+import { JOB_TO_ROLE_MAP } from "../const/jobs"
+
 export function parseDpsString(dpsString) {
 	const dps = parseFloat(dpsString)
 	return isNaN(dps) ? null : dps
 }
 
 export function getRole(jobString) {
-	const roles = Object.entries({
-		tank: [ "pld", "war", "drk", "gnb" ],
-		healer: [ "whm", "sch", "ast" ],
-		melee: [ "mnk", "drg", "nin", "sam" ],
-		ranged: [ "brd", "mch", "dnc" ],
-		caster: [ "blm", "smn", "rdm", "blu" ],
-	})
-	for (const [ role, jobs ] of roles) {
-		if (jobs.includes(jobString)) return role
-	}
-	return ""
+	return JOB_TO_ROLE_MAP[jobString] || ""
 }
 
 export function retrieveCombatantData(combatantData) {
