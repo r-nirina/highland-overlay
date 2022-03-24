@@ -46,11 +46,11 @@ export default {
 		}
 
 		.duration {
-			font-weight: 700,
+			font-weight: 700;
 		}
 
 		.title {
-			font-weight: 100,
+			font-weight: 100;
 		}
 	}
 }
