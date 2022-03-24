@@ -1,13 +1,18 @@
 <template>
-	<div :class="[ 'app', isActive ? 'active' : '' ]">
-		<EncounterData />
-		<CombatantData
-			v-for="combatant in combatants"
-			:key="combatant['name']"
-			v-bind="combatant"
-			class="combatant"
-		/>
-		<RaidData />
+  <div :class="[ 'app', isActive ? 'active' : '' ]">
+    <div class="left-pane">
+      <EncounterData />
+      <CombatantData
+        v-for="combatant in combatants"
+        :key="combatant['name']"
+        v-bind="combatant"
+        class="combatant"
+      />
+      <RaidData />
+    </div>
+    <div class="right-pane">
+      <EncounterTimer />
+    </div>
 	</div>
 </template>
 
@@ -15,6 +20,7 @@
 import { mapActions, mapState, mapGetters } from "vuex"
 import CombatantData from "./CombatantData.vue"
 import EncounterData from "./EncounterData.vue"
+import EncounterTimer from "./EncounterTimer.vue";
 import RaidData from "./RaidData.vue"
 
 export default {
@@ -23,6 +29,7 @@ export default {
 	components: {
 		CombatantData,
 		EncounterData,
+    EncounterTimer,
 		RaidData,
 	},
 
@@ -77,18 +84,30 @@ html {
 			opacity: 0;
 			transition: opacity 360ms ease-out 10s;
 
-			& > * {
-				background-color:   rgba(0, 0, 0, 0.6);
-			}
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: start;
 
-			&.active {
-				opacity: 1;
-				transition: opacity 360ms ease-out;
-			}
+      &.active {
+        opacity: 1;
+        transition: opacity 360ms ease-out;
+      }
 
-			.combatant:not(:last-of-type) {
-				border-bottom: solid 1px rgba(0, 0, 0, 0.8);
-			}
+      .left-pane {
+        & > * {
+          background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .combatant:not(:last-of-type) {
+          border-bottom: solid 1px rgba(0, 0, 0, 0.8);
+        }
+      }
+      .right-pane {
+        margin-left: 60px;
+        margin-top: 60px;
+        background-color: rgba(0, 0, 0, 0);
+      }
 		}
 	}
 }

@@ -48,9 +48,23 @@ export function rankByDps(combatant1, combatant2) {
 			: 0
 }
 
+export function parseDurationString(durationString) {
+	try {
+		const [ minute, seconds ] = durationString.split(":").map(s => {
+			const n = Number(s)
+			return isNaN(n) ? 0 : n
+		})
+		return ({ minute, seconds })
+	} catch (e) { return ({ minute: 0, seconds: 0 }) }
+}
+
 export function retrieveEncounterData(encounterData) {
 	return ({
 		title: encounterData["title"],
-		duration: encounterData["duration"],
+		duration: parseDurationString(encounterData["duration"]),
 	})
+}
+
+export function padTimerDigitString(timerString) {
+	return `${timerString || 0}`.padStart(2, "0")
 }

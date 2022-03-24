@@ -2,7 +2,7 @@
 	<div class="encounter-data">
 		<img class="encounter-icon" src="../assets/images/encounter.png" alt="Encounter">
 		<div class="encounter-info">
-			<span class="duration">{{ encounter.duration }}</span>
+			<span class="duration">{{ durationString }}</span>
 			<h1 class="title">{{ encounter.title }}</h1>
 		</div>
 	</div>
@@ -10,11 +10,18 @@
 
 <script>
 import { mapState } from "vuex"
+import {padTimerDigitString} from "../utils/transforms";
 export default {
 	name: "EncounterData",
 
 	computed: {
 		...mapState("data", [ "encounter" ]),
+
+    durationString: function() {
+      try {
+        return `${padTimerDigitString(this.encounter.duration.minute)} : ${padTimerDigitString(this.encounter.duration.seconds)}`;
+      } catch (e) { return '00:00' }
+    },
 	}
 }
 </script>
@@ -39,6 +46,7 @@ export default {
 		flex-flow: column nowrap;
 		justify-content: center;
 		align-items: flex-start;
+    padding-right: 9px;
 
 		.duration, .title {
 			line-height: 1.4;
