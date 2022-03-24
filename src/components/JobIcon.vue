@@ -52,9 +52,11 @@ import pug from "../assets/images/pug.png"
 import rdm from "../assets/images/rdm.png"
 import rog from "../assets/images/rog.png"
 import rook from "../assets/images/rook.png"
+import rpr from "../assets/images/rpr.png"
 import sam from "../assets/images/sam.png"
 import sch from "../assets/images/sch.png"
 import Selene from "../assets/images/Selene.png"
+import sge from "../assets/images/sge.png"
 import smn from "../assets/images/smn.png"
 import thm from "../assets/images/thm.png"
 import Titan from "../assets/images/Titan.png"
@@ -108,9 +110,11 @@ const jobIcons = {
     "rdm": rdm,
     "rog": rog,
     "rook": rook,
+    "rpr": rpr,
     "sam": sam,
     "sch": sch,
     "Selene": Selene,
+    "sge": sge,
     "smn": smn,
     "thm": thm,
     "Titan": Titan,

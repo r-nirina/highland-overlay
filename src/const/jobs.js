@@ -6,10 +6,12 @@ export const JOBS = {
 	whm: "whm",
 	sch: "sch",
 	ast: "ast",
+	sge: "sge",
 	mnk: "mnk",
 	drg: "drg",
 	nin: "nin",
 	sam: "sam",
+	rpr: "rpr",
 	brd: "brd",
 	mch: "mch",
 	dnc: "dnc",
@@ -29,8 +31,8 @@ export const ROLES = {
 
 export const ROLE_TO_JOBS_MAP = {
 	[ROLES.tank]: [ JOBS.pld, JOBS.war, JOBS.drk, JOBS.gnb ],
-	[ROLES.healer]: [ JOBS.whm, JOBS.sch, JOBS.ast ],
-	[ROLES.melee]: [ JOBS.mnk, JOBS.drg, JOBS.nin, JOBS.sam ],
+	[ROLES.healer]: [ JOBS.whm, JOBS.sch, JOBS.ast, JOBS.sge ],
+	[ROLES.melee]: [ JOBS.mnk, JOBS.drg, JOBS.nin, JOBS.sam, JOBS.rpr ],
 	[ROLES.ranged]: [ JOBS.brd, JOBS.mch, JOBS.dnc ],
 	[ROLES.caster]: [ JOBS.blm, JOBS.smn, JOBS.rdm, JOBS.blu ],
 }
@@ -44,11 +46,13 @@ export const JOB_TO_ROLE_MAP = {
 	[JOBS.whm]: ROLES.healer,
 	[JOBS.sch]: ROLES.healer,
 	[JOBS.ast]: ROLES.healer,
+	[JOBS.sge]: ROLES.healer,
 
 	[JOBS.mnk]: ROLES.melee,
 	[JOBS.drg]: ROLES.melee,
 	[JOBS.nin]: ROLES.melee,
 	[JOBS.sam]: ROLES.melee,
+	[JOBS.rpr]: ROLES.melee,
 
 	[JOBS.brd]: ROLES.ranged,
 	[JOBS.mch]: ROLES.ranged,
