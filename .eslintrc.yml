@@ -36,3 +36,7 @@ rules:
     - error
     - never
   no-console: error
+  array-bracket-spacing:
+    - error
+    - always
+  dot-notation: off
