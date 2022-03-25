@@ -68,11 +68,6 @@ html {
 			opacity: 0;
 			transition: opacity 360ms ease-out 10s;
 
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      align-items: start;
-
       &.active {
         opacity: 1;
         transition: opacity 360ms ease-out;
