@@ -74,6 +74,7 @@ html {
 	body {
 		height:   100%;
 		width:    100%;
+    overflow: hidden;
 
 		ul,
 		ol {
@@ -95,6 +96,8 @@ html {
       }
 
       .left-pane {
+        flex: 1;
+
         & > * {
           background-color: rgba(0, 0, 0, 0.6);
         }
@@ -104,8 +107,8 @@ html {
         }
       }
       .right-pane {
-        margin-left: 60px;
-        margin-top: 60px;
+        margin-left: 20px;
+        margin-top: 70px;
         background-color: rgba(0, 0, 0, 0);
       }
 		}

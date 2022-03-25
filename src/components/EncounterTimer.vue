@@ -65,7 +65,7 @@ export default {
   pointer-events: none;
 
   .digit-timer-display {
-    background-color: #333333;
+    background-color: #000000;
     font-size: 16px;
     line-height: 24px;
     padding: 0 16px 0 10px;
@@ -113,7 +113,7 @@ export default {
         [class^="seconds-"] {
           position: relative;
           height: 100%;
-          background-color: #333333;
+          background-color: #000000;
           width: 2px;
 
           &:after {
@@ -122,7 +122,7 @@ export default {
             position: absolute;
             width: 12px;
             height: 12px;
-            background-color: #333333;
+            background-color: #000000;
             bottom: -12px;
             left: -5px;
             transform: rotate(45deg);
@@ -148,14 +148,14 @@ export default {
       content: " ";
       display: block;
       position: absolute;
-      left: -1px;
-      right: -1px;
+      left: 0;
+      right: 0;
       top: 0;
       bottom: 0;
       background-color: transparent;
       z-index: 2;
       border-radius: 10px;
-      border: solid 2px #333333;
+      border: solid 2px #000000;
     }
 
     .gauge-timer-bar-wrapper {
