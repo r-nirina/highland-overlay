@@ -40,7 +40,7 @@
 
 <script>
 import { mapState } from "vuex"
-import {padTimerDigitString} from "../utils/transforms";
+import {padTimerDigitString} from "../../utils/transforms"
 export default {
   name: "EncounterTimer",
 
@@ -49,7 +49,7 @@ export default {
 
     durationString: function() {
       try {
-        return `${padTimerDigitString(this.encounter.duration.minute)} : ${padTimerDigitString(this.encounter.duration.seconds)}`;
+        return `${padTimerDigitString(this.encounter.duration.minute)} : ${padTimerDigitString(this.encounter.duration.seconds)}`
       } catch (e) { return '00:00' }
     },
   },

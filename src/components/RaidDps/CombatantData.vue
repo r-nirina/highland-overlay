@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import JobIcon from "./JobIcon.vue"
+import JobIcon from "../utils/JobIcon.vue"
 
 export default {
 	name: "CombatantData",

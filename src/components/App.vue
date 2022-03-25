@@ -1,14 +1,7 @@
 <template>
-  <div :class="[ 'app', isActive ? 'active' : '' ]">
+  <div :class="[ 'app', 'active' ]">
     <div class="left-pane">
-      <EncounterData />
-      <CombatantData
-        v-for="combatant in combatants"
-        :key="combatant['name']"
-        v-bind="combatant"
-        class="combatant"
-      />
-      <RaidData />
+      <RaidDps />
     </div>
     <div class="right-pane">
       <EncounterTimer />
@@ -17,27 +10,22 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from "vuex"
-import CombatantData from "./CombatantData.vue"
-import EncounterData from "./EncounterData.vue"
-import EncounterTimer from "./EncounterTimer.vue";
-import RaidData from "./RaidData.vue"
+import { mapActions, mapState } from "vuex"
+import EncounterTimer from "./EncounterTimer/EncounterTimer.vue"
+import RaidDps from "./RaidDps/RaidDps.vue"
 
 export default {
 	name: "App",
 
 	components: {
-		CombatantData,
-		EncounterData,
+    RaidDps,
     EncounterTimer,
-		RaidData,
 	},
 
 	data: () => ({}),
 
 	computed: {
 		...mapState("act", [ "isActive" ]),
-		...mapState("data", [ "combatants" ]),
 	},
 
 	mounted() {
@@ -95,17 +83,7 @@ html {
         transition: opacity 360ms ease-out;
       }
 
-      .left-pane {
-        flex: 1;
-
-        & > * {
-          background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .combatant:not(:last-of-type) {
-          border-bottom: solid 1px rgba(0, 0, 0, 0.8);
-        }
-      }
+      .left-pane { flex: 1; }
       .right-pane {
         margin-left: 20px;
         margin-top: 70px;

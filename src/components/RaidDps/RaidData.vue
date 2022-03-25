@@ -1,17 +1,21 @@
 <template>
 	<span :class="[ 'raid-data', isSoloFight ? 'solo-fight' : '' ]">
-		<img class="party-icon" src="../assets/images/party.png" alt="Raid DPS">
+		<img class="party-icon" :src="PartyIcon" alt="Raid DPS">
 		<span class="raid-dps">{{ raidDps }}</span>
 	</span>
 </template>
 
 <script>
 import { mapGetters } from "vuex"
+import PartyIcon from "../../assets/images/party.png"
+
 export default {
 	name: "RaidData",
 
 	computed: {
 		...mapGetters("data", [ "raidDps", "isSoloFight" ]),
+
+    PartyIcon: function() { return PartyIcon }
 	}
 }
 </script>
@@ -35,7 +39,7 @@ export default {
 		height: auto;
 		width: auto;
 	}
-	
+
 	.raid-dps {
 		display: block;
 		text-align: right;
