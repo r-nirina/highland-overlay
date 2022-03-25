@@ -1,11 +1,7 @@
 <template>
   <div :class="[ 'app', isActive ? 'active' : '' ]">
-    <div class="left-pane">
-      <RaidDps />
-    </div>
-    <div class="right-pane">
-      <EncounterTimer />
-    </div>
+    <EncounterTimer class="encounter-timer" />
+    <RaidDps class="raid-dps" />
 	</div>
 </template>
 
@@ -74,21 +70,17 @@ html {
 			transition: opacity 360ms ease-out 10s;
 
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: column nowrap;
       justify-content: center;
-      align-items: start;
+      align-items: center;
 
       &.active {
         opacity: 1;
         transition: opacity 360ms ease-out;
       }
 
-      .left-pane { flex: 1; }
-      .right-pane {
-        margin-left: 20px;
-        margin-top: 70px;
-        background-color: rgba(0, 0, 0, 0);
-      }
+      .encounter-timer { margin: 40px auto; }
+      .raid-dps { width: 100%; }
 		}
 	}
 }
