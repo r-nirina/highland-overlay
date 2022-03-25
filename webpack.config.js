@@ -9,6 +9,8 @@ module.exports = {
 
 	entry: {
 		index: "./src/index.js",
+		dpsChart: "./src/dpsChart.js",
+		timer: "./src/timer.js",
 	},
 
 	output: {
@@ -69,6 +71,20 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: "src/index.html",
 			favicon: "./favicon.ico",
+			filename: "index.html",
+			chunks: ['index'],
+		}),
+		new HtmlWebpackPlugin({
+			template: "src/index.html",
+			favicon: "./favicon.ico",
+			filename: "dpsChart.html",
+			chunks: ['dpsChart'],
+		}),
+		new HtmlWebpackPlugin({
+			template: "src/index.html",
+			favicon: "./favicon.ico",
+			filename: "timer.html",
+			chunks: ['timer'],
 		}),
 	],
 }
