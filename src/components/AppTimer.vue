@@ -1,11 +1,6 @@
 <template>
   <div :class="[ 'app', isActive ? 'active' : '' ]">
-    <div class="left-pane">
-      <RaidDps />
-    </div>
-    <div class="right-pane">
-      <EncounterTimer />
-    </div>
+    <EncounterTimer />
 	</div>
 </template>
 
@@ -81,13 +76,6 @@ html {
       &.active {
         opacity: 1;
         transition: opacity 360ms ease-out;
-      }
-
-      .left-pane { flex: 1; }
-      .right-pane {
-        margin-left: 20px;
-        margin-top: 70px;
-        background-color: rgba(0, 0, 0, 0);
       }
 		}
 	}
