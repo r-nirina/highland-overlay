@@ -10,18 +10,44 @@ describe("data store", () => {
 
 	it("starts empty", () => {
 		const store = useDataStore()
-		expect(store.hasData).toBe(false)
+		expect(store.isExpanded).toBe(false)
 		expect(store.combatants).toEqual([])
 		expect(store.isSoloFight).toBe(true)
 		expect(store.raidDps).toBe(0)
 		expect(store.durationString).toBe("00 : 00")
 	})
 
-	it("remembers that data was received", () => {
+	it("unfolds once data is received", () => {
 		const store = useDataStore()
 		store.updateData(snapshots[0])
 
-		expect(store.hasData).toBe(true)
+		expect(store.isExpanded).toBe(true)
+	})
+
+	it("stays folded by the user when more data comes", () => {
+		const store = useDataStore()
+		store.updateData(snapshots[0])
+		store.toggleExpanded()
+		store.updateData(snapshots[1])
+
+		expect(store.isExpanded).toBe(false)
+
+		store.toggleExpanded()
+		expect(store.isExpanded).toBe(true)
+	})
+
+	it("unfolds again when a new combat starts", () => {
+		const store = useDataStore()
+		const inCombat = { ...snapshots[1], isActive: "true" }
+		const outOfCombat = { ...snapshots[1], isActive: "false" }
+		store.updateData(inCombat)
+		store.toggleExpanded()
+
+		store.updateData(outOfCombat)
+		expect(store.isExpanded).toBe(false)
+
+		store.updateData(inCombat)
+		expect(store.isExpanded).toBe(true)
 	})
 
 	it("keeps the top 8 combatants by encounter dps", () => {

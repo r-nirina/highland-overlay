@@ -4,6 +4,7 @@ import {
 	formatDuration,
 	parseDpsString,
 	parseDurationString,
+	parseIsActive,
 	rankByDps,
 	retrieveCombatantData,
 	retrieveMaxDps,
@@ -17,6 +18,18 @@ describe("parseDpsString", () => {
 
 	it("returns null when ACT has no value", () => {
 		expect(parseDpsString("---")).toBeNull()
+	})
+})
+
+describe("parseIsActive", () => {
+	it("reads the strings sent by OverlayPlugin", () => {
+		expect(parseIsActive("true")).toBe(true)
+		expect(parseIsActive("false")).toBe(false)
+	})
+
+	it("accepts booleans and missing values", () => {
+		expect(parseIsActive(true)).toBe(true)
+		expect(parseIsActive(undefined)).toBe(false)
 	})
 })
 
