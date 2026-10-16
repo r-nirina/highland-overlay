@@ -56,8 +56,6 @@ export default {
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
-	// As wide as its content, which it reveals when unfolding
-	width: fit-content;
 	pointer-events: none;
 
 	// Folded: clipped down to its left end. Unfolds towards the right by revealing it as is,
@@ -84,7 +82,8 @@ export default {
 	.gauge-timer-display {
 		position: relative;
 		background-color: #666666;
-		width: 240px;
+		// Fills the available width, along with its markers
+		flex: 1;
 		height: 24px;
 		border-radius: 10px;
 		z-index: 2;
