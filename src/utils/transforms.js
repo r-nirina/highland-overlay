@@ -5,6 +5,15 @@ export function parseDpsString(dpsString) {
 	return isNaN(dps) ? null : dps
 }
 
+export function roundDps(dps) {
+	return Math.round(dps * 100) / 100
+}
+
+// OverlayPlugin sends "true" / "false" strings
+export function parseIsActive(isActive) {
+	return isActive === true || isActive === "true"
+}
+
 export function getRole(jobString) {
 	return JOB_TO_ROLE_MAP[jobString] || ""
 }
@@ -13,7 +22,7 @@ export function retrieveCombatantData(combatantData) {
 	const jobString = combatantData["Job"].toLowerCase().trim()
 
 	const name = combatantData["name"].trim()
-	const dps = parseDpsString(combatantData["dps"])
+	const dps = parseDpsString(combatantData["encdps"])
 	const job = (jobString === "" && name === "Limit Break")
 		? "lb"
 		: jobString
@@ -35,7 +44,7 @@ export function calculateRelativeDps(maxDps) {
 	return function(combatantData) {
 		return ({
 			...combatantData,
-			relativeDps: (combatantData.dps / maxDps) * 100,
+			relativeDps: (maxDps > 0) ? (combatantData.dps / maxDps) * 100 : 0,
 		})
 	}
 }
@@ -48,14 +57,16 @@ export function rankByDps(combatant1, combatant2) {
 			: 0
 }
 
+// "mm:ss", or "hh:mm:ss" once the encounter lasts an hour
 export function parseDurationString(durationString) {
-	try {
-		const [ minute, seconds ] = durationString.split(":").map(s => {
-			const n = Number(s)
-			return isNaN(n) ? 0 : n
-		})
-		return ({ minute, seconds })
-	} catch (e) { return ({ minute: 0, seconds: 0 }) }
+	const parts = `${durationString ?? ""}`.split(":").map((s) => {
+		const n = Number(s)
+		return isNaN(n) ? 0 : n
+	})
+	const seconds = parts.pop() ?? 0
+	const minutes = parts.pop() ?? 0
+	const hours = parts.pop() ?? 0
+	return ({ minute: hours * 60 + minutes, seconds })
 }
 
 export function retrieveEncounterData(encounterData) {
@@ -67,4 +78,8 @@ export function retrieveEncounterData(encounterData) {
 
 export function padTimerDigitString(timerString) {
 	return `${timerString || 0}`.padStart(2, "0")
+}
+
+export function formatDuration(duration) {
+	return `${padTimerDigitString(duration.minute)} : ${padTimerDigitString(duration.seconds)}`
 }

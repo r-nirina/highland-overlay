@@ -1,3 +1,3 @@
-# Browsers that we support
-> .05% in BE
-not ie <= 9
+# OverlayPlugin renders overlays with CEF 95 (Chromium 95). Used by eslint-plugin-compat.
+# Keep in sync with build.target in vite.config.js
+chrome 95

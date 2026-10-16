@@ -1,12 +1,12 @@
 <template>
-  <div :class="[ 'app', isActive ? 'active' : '' ]">
-    <EncounterTimer class="encounter-timer" />
-    <RaidDps class="raid-dps" />
-	</div>
+	<OverlayShell>
+		<EncounterTimer class="encounter-timer" />
+		<RaidDps class="raid-dps" />
+	</OverlayShell>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex"
+import OverlayShell from "./OverlayShell.vue"
 import EncounterTimer from "./EncounterTimer/EncounterTimer.vue"
 import RaidDps from "./RaidDps/RaidDps.vue"
 
@@ -14,70 +14,14 @@ export default {
 	name: "App",
 
 	components: {
-    RaidDps,
-    EncounterTimer,
-	},
-
-	data: () => ({}),
-
-	computed: {
-		...mapState("act", [ "isActive" ]),
-	},
-
-	mounted() {
-		this.initActListener()
-	},
-
-	methods: {
-		...mapActions("act", [ "initActListener" ]),
+		OverlayShell,
+		EncounterTimer,
+		RaidDps,
 	},
 }
 </script>
 
-<style lang="scss">
-@import url("../assets/fonts/Ubuntu/Ubuntu.scss");
-@import url("../assets/fonts/UbuntuMono/UbuntuMono.scss");
-
-* {
-	font-family:   'Ubuntu', sans-serif;
-	font-size:     14px;
-	box-sizing:    border-box;
-	margin:        0;
-	padding:       0;
-	outline:       none;
-	user-select:   none;
-	position:      relative;
-	line-height:   1;
-}
-
-html {
-	height:             100%;
-	width:              100%;
-	color:              #ffffff;
-
-	body {
-		height:   100%;
-		width:    100%;
-    overflow: hidden;
-
-		ul,
-		ol {
-			list-style:   none;
-		}
-
-		.app {
-			opacity: 0;
-			transition: opacity 360ms ease-out 10s;
-
-      &.active {
-        opacity: 1;
-        transition: opacity 360ms ease-out;
-      }
-
-      .encounter-timer { margin: 40px auto; }
-      .raid-dps { width: 100%; }
-		}
-	}
-}
-
+<style lang="scss" scoped>
+.encounter-timer { margin: 40px auto; }
+.raid-dps { width: 100%; }
 </style>

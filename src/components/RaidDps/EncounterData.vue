@@ -9,24 +9,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
-import {padTimerDigitString} from "../../utils/transforms"
+import { mapState } from "pinia"
+import { useDataStore } from "../../stores/data"
 import EncounterIcon from "../../assets/images/encounter.png"
 
 export default {
 	name: "EncounterData",
 
 	computed: {
-		...mapState("data", [ "encounter" ]),
+		...mapState(useDataStore, [ "encounter", "durationString" ]),
 
-    encounterIcon: function() { return EncounterIcon },
-
-    durationString: function() {
-      try {
-        return `${padTimerDigitString(this.encounter.duration.minute)} : ${padTimerDigitString(this.encounter.duration.seconds)}`
-      } catch (e) { return '00:00' }
-    },
-	}
+		encounterIcon: function() { return EncounterIcon },
+	},
 }
 </script>
 
@@ -50,7 +44,7 @@ export default {
 		flex-flow: column nowrap;
 		justify-content: center;
 		align-items: flex-start;
-    padding-right: 9px;
+		padding-right: 9px;
 
 		.duration, .title {
 			line-height: 1.4;
@@ -62,7 +56,7 @@ export default {
 		}
 
 		.title {
-			font-weight: 100;
+			font-weight: 300;
 		}
 	}
 }
