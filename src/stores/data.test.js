@@ -36,6 +36,20 @@ describe("data store", () => {
 		expect(store.isExpanded).toBe(true)
 	})
 
+	it("unfolds again when a new combat starts", () => {
+		const store = useDataStore()
+		const inCombat = { ...snapshots[1], isActive: "true" }
+		const outOfCombat = { ...snapshots[1], isActive: "false" }
+		store.updateData(inCombat)
+		store.toggleExpanded()
+
+		store.updateData(outOfCombat)
+		expect(store.isExpanded).toBe(false)
+
+		store.updateData(inCombat)
+		expect(store.isExpanded).toBe(true)
+	})
+
 	it("keeps the top 8 combatants by encounter dps", () => {
 		const store = useDataStore()
 		store.updateData(snapshots[1])

@@ -7,13 +7,17 @@ import {
 	rankByDps,
 	roundDps,
 	formatDuration,
+	parseIsActive,
 } from "../utils/transforms"
 
 export const useDataStore = defineStore("data", {
 	state: () => ({
-		// Folded until the first combat data, then folded / unfolded by clicking the encounter icon
+		// Folded until the first combat data, then unfolded by each new combat, and folded / unfolded
+		// by clicking the encounter icon
 		isExpanded: false,
 		hasData: false,
+		// Whether ACT's encounter is in progress
+		isActive: false,
 		combatants: [],
 		encounter: {
 			title: "",
@@ -46,10 +50,13 @@ export const useDataStore = defineStore("data", {
 
 			this.encounter = retrieveEncounterData(actData["Encounter"])
 
-			if (!this.hasData) {
+			// OverlayPlugin sends combat data every second, in combat or not: a new combat is when it becomes active
+			const isActive = parseIsActive(actData["isActive"])
+			if (!this.hasData || (isActive && !this.isActive)) {
 				this.isExpanded = true
 			}
 			this.hasData = true
+			this.isActive = isActive
 		},
 
 		toggleExpanded() {

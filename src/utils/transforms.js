@@ -9,6 +9,11 @@ export function roundDps(dps) {
 	return Math.round(dps * 100) / 100
 }
 
+// OverlayPlugin sends "true" / "false" strings
+export function parseIsActive(isActive) {
+	return isActive === true || isActive === "true"
+}
+
 export function getRole(jobString) {
 	return JOB_TO_ROLE_MAP[jobString] || ""
 }
