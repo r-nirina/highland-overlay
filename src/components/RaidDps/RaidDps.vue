@@ -1,5 +1,5 @@
 <template>
-	<div :class="[ 'raid-dps', isExpanded ? 'expanded' : '' ]">
+	<div :class="[ 'raid-dps', isExpanded ? 'expanded' : '', isActive ? 'active' : '' ]">
 		<EncounterData />
 		<CombatantData
 			v-for="combatant in combatants"
@@ -28,7 +28,7 @@ export default {
 	},
 
 	computed: {
-		...mapState(useDataStore, [ "combatants", "isExpanded" ]),
+		...mapState(useDataStore, [ "combatants", "isExpanded", "isActive" ]),
 	},
 }
 </script>
@@ -72,6 +72,11 @@ export default {
 
 	& > * {
 		background-color: rgba(0, 0, 0, 0.6);
+		transition: background-color var(--fold-duration) var(--fold-easing);
+	}
+	// Folded during a combat: shows that the overlay is still receiving data
+	&.active:not(.expanded) > * {
+		background-color: rgba(115, 150, 0, 0.5);
 	}
 	.combatant:not(:last-of-type) {
 		border-bottom: solid 1px rgba(0, 0, 0, 0.8);
