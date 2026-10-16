@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.encounter-timer { margin: 40px auto; }
+// Left aligned on the encounter icon of the dps chart, both unfold from the left
+.encounter-timer { margin: 40px 0; }
 .raid-dps { width: 100%; }
 </style>

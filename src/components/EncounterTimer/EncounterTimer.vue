@@ -55,20 +55,18 @@ export default {
 .encounter-timer {
 	display: flex;
 	flex-flow: row nowrap;
-	// Aligned on the encounter icon of the dps chart, both unfold from the left
-	justify-content: flex-start;
 	align-items: center;
+	// As wide as its content, which it reveals when unfolding
+	width: fit-content;
 	pointer-events: none;
 
-	// Folded: transparent, with the gauge narrowed down to its left end.
-	// Lasts both steps of the dps chart, so that they unfold together
-	opacity: 0;
-	transition: opacity var(--fold-duration) var(--fold-easing);
+	// Folded: clipped down to its left end. Unfolds towards the right by revealing it as is,
+	// over both steps of the dps chart so that they unfold together. Clipped lower than the gauge, for its pointers
+	clip-path: inset(0 100% -24px 0);
+	transition: clip-path var(--fold-duration) var(--fold-easing);
 
 	&.expanded {
-		opacity: 1;
-
-		.gauge-timer-display { width: 240px; }
+		clip-path: inset(0 0 -24px 0);
 	}
 
 	.digit-timer-display {
@@ -86,11 +84,10 @@ export default {
 	.gauge-timer-display {
 		position: relative;
 		background-color: #666666;
-		width: 24px;
+		width: 240px;
 		height: 24px;
 		border-radius: 10px;
 		z-index: 2;
-		transition: width var(--fold-duration) var(--fold-easing);
 
 		[class^="multiples-markers-"] {
 			position: absolute;
