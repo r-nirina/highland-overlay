@@ -11,7 +11,7 @@ import {
 
 export const useDataStore = defineStore("data", {
 	state: () => ({
-		// Folded until the first combat data
+		// Folded until the first combat data, then folded / unfolded by clicking the encounter icon
 		isExpanded: false,
 		hasData: false,
 		combatants: [],
@@ -50,6 +50,10 @@ export const useDataStore = defineStore("data", {
 				this.isExpanded = true
 			}
 			this.hasData = true
+		},
+
+		toggleExpanded() {
+			this.isExpanded = !this.isExpanded
 		},
 	},
 })

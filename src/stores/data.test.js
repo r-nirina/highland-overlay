@@ -24,6 +24,18 @@ describe("data store", () => {
 		expect(store.isExpanded).toBe(true)
 	})
 
+	it("stays folded by the user when more data comes", () => {
+		const store = useDataStore()
+		store.updateData(snapshots[0])
+		store.toggleExpanded()
+		store.updateData(snapshots[1])
+
+		expect(store.isExpanded).toBe(false)
+
+		store.toggleExpanded()
+		expect(store.isExpanded).toBe(true)
+	})
+
 	it("keeps the top 8 combatants by encounter dps", () => {
 		const store = useDataStore()
 		store.updateData(snapshots[1])

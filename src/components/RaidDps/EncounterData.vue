@@ -1,6 +1,11 @@
 <template>
 	<div class="encounter-data">
-		<img class="encounter-icon" :src="encounterIcon" alt="Encounter">
+		<img
+			class="encounter-icon"
+			:src="encounterIcon"
+			alt="Encounter"
+			@click="toggleExpanded"
+		>
 		<div class="encounter-info">
 			<span class="duration">{{ durationString }}</span>
 			<h1 class="title">{{ encounter.title }}</h1>
@@ -9,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from "pinia"
+import { mapActions, mapState } from "pinia"
 import { useDataStore } from "../../stores/data"
 import EncounterIcon from "../../assets/images/encounter.png"
 
@@ -20,6 +25,10 @@ export default {
 		...mapState(useDataStore, [ "encounter", "durationString" ]),
 
 		encounterIcon: function() { return EncounterIcon },
+	},
+
+	methods: {
+		...mapActions(useDataStore, [ "toggleExpanded" ]),
 	},
 }
 </script>
@@ -39,6 +48,8 @@ export default {
 		width: var(--icon-size);
 		height: var(--icon-size);
 		padding: 8px;
+		// Folds / unfolds the overlay
+		cursor: pointer;
 	}
 
 	.encounter-info {
