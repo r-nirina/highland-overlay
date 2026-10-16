@@ -4,7 +4,8 @@
 			class="encounter-icon"
 			:src="encounterIcon"
 			alt="Encounter"
-			@click="toggleExpanded"
+			@mousedown="onIconPress"
+			@click="onIconClick"
 		>
 		<div class="encounter-info">
 			<span class="duration">{{ durationString }}</span>
@@ -16,10 +17,16 @@
 <script>
 import { mapActions, mapState } from "pinia"
 import { useDataStore } from "../../stores/data"
+import { isDragRelease } from "../../utils/drag"
 import EncounterIcon from "../../assets/images/encounter.png"
 
 export default {
 	name: "EncounterData",
+
+	data: () => ({
+		// Where the icon was last pressed, on screen
+		iconPress: null,
+	}),
 
 	computed: {
 		...mapState(useDataStore, [ "encounter", "durationString" ]),
@@ -29,6 +36,17 @@ export default {
 
 	methods: {
 		...mapActions(useDataStore, [ "toggleExpanded" ]),
+
+		onIconPress(event) {
+			this.iconPress = { screenX: event.screenX, screenY: event.screenY }
+		},
+
+		// Dragging the folded overlay by its icon must not unfold it
+		onIconClick(event) {
+			if (!isDragRelease(this.iconPress, event)) {
+				this.toggleExpanded()
+			}
+		},
 	},
 }
 </script>
