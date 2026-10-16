@@ -63,9 +63,9 @@ export default {
 
 			.bar {
 				height: 100%;
-				background-color: rgba(0, 115, 150, 0.2);
+				background-color: rgba(115, 150, 0, 0.2);
 				transition: width 240ms linear 60ms;
-				border-right: solid 1px rgba(0, 223, 223, 0.7);
+				border-right: solid 1px rgba(223, 223, 0, 0.7);
 			}
 		}
 
@@ -99,7 +99,7 @@ export default {
 	&.you .info-wrapper {
 		.dps-bar-wrapper {
 			.bar {
-				background-color: rgba(0, 115, 150, 0.5);
+				background-color: rgba(115, 150, 0, 0.5);
 			}
 		}
 	}

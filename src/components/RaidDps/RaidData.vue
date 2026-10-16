@@ -1,7 +1,7 @@
 <template>
-	<span :class="[ 'raid-data', isSoloFight ? 'solo-fight' : '' ]">
-		<img class="party-icon" :src="PartyIcon" alt="Raid DPS">
-		<span class="raid-dps">{{ raidDps }}</span>
+	<span class="raid-data">
+		<img :class="[ 'party-icon', isSoloFight ? 'solo-fight' : '' ]" :src="PartyIcon" alt="Raid DPS">
+		<span :class="[ 'raid-dps', isSoloFight ? 'solo-fight' : '' ]">{{ raidDps }}</span>
 	</span>
 </template>
 
@@ -27,12 +27,14 @@ export default {
 	flex-flow: row nowrap;
 	justify-content: flex-end;
 	align-items: center;
-	border-top: solid 1px rgba(0, 223, 223, 0.7);
+	border-top: solid 1px rgba(223, 223, 0, 0.7);
 
-	opacity: 1;
-	transition: opacity 360ms ease-out 720ms;
-	&.solo-fight {
-		opacity: 0;
+	.party-icon, .raid-dps {
+		opacity: 1;
+		transition: opacity 360ms ease-out 720ms;
+		&.solo-fight {
+			opacity: 0;
+		}
 	}
 
 	.party-icon {

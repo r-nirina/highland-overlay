@@ -30,24 +30,26 @@ export default {
 	flex-flow: row nowrap;
 	justify-content: flex-start;
 	align-items: center;
-	border-bottom: solid 1px rgba(0, 223, 223, 0.7);
+	border-bottom: solid 1px rgba(223, 223, 0, 0.7);
+	padding-right: 9px;
+	gap: 4px;
 
 	.encounter-icon {
-		max-height: 40px;
-		max-width: 40px;
-		padding: 9px;
+		max-height: 56px;
+		max-width: 56px;
+		padding: 8px;
 	}
 
 	.encounter-info {
 		flex: 1;
 		display: flex;
+		gap: 4px;
 		flex-flow: column nowrap;
 		justify-content: center;
 		align-items: flex-start;
-		padding-right: 9px;
 
 		.duration, .title {
-			line-height: 1.4;
+			line-height: 1;
 			font-size: 14px;
 		}
 

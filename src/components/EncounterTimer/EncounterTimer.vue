@@ -164,9 +164,9 @@ export default {
 				height: 100%;
 				width: 0;
 				margin-right: auto;
-				background-color: rgba(65, 255, 255, 0.5);
+				background-color: rgba(255, 255, 65, 0.3);
 				transition: width 120ms linear;
-				border-right: solid 1px rgba(0, 223, 223, 0.7);
+				border-right: solid 1px rgba(223, 223, 0, 0.7);
 			}
 		}
 	}

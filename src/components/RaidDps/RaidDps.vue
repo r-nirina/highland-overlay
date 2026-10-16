@@ -35,6 +35,9 @@ export default {
 
 <style lang="scss" scoped>
 .raid-dps {
+	border-radius: 8px;
+	overflow: hidden;
+
 	& > * {
 		background-color: rgba(0, 0, 0, 0.6);
 	}
