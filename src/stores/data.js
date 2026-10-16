@@ -11,6 +11,8 @@ import {
 
 export const useDataStore = defineStore("data", {
 	state: () => ({
+		// Folded until the first combat data
+		isExpanded: false,
 		hasData: false,
 		combatants: [],
 		encounter: {
@@ -43,6 +45,10 @@ export const useDataStore = defineStore("data", {
 				.map(calculateRelativeDps(maxDps))
 
 			this.encounter = retrieveEncounterData(actData["Encounter"])
+
+			if (!this.hasData) {
+				this.isExpanded = true
+			}
 			this.hasData = true
 		},
 	},

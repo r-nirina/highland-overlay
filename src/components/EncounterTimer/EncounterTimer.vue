@@ -1,5 +1,5 @@
 <template>
-	<div class="encounter-timer">
+	<div :class="[ 'encounter-timer', isExpanded ? 'expanded' : '' ]">
 		<div class="digit-timer-display">{{ durationString }}</div>
 		<div class="gauge-timer-display">
 			<div class="multiples-markers-15">
@@ -46,7 +46,7 @@ export default {
 	name: "EncounterTimer",
 
 	computed: {
-		...mapState(useDataStore, [ "encounter", "durationString" ]),
+		...mapState(useDataStore, [ "encounter", "durationString", "isExpanded" ]),
 	},
 }
 </script>
@@ -55,9 +55,21 @@ export default {
 .encounter-timer {
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: center;
+	// Aligned on the encounter icon of the dps chart, both unfold from the left
+	justify-content: flex-start;
 	align-items: center;
 	pointer-events: none;
+
+	// Folded: transparent, with the gauge narrowed down to its left end.
+	// Lasts both steps of the dps chart, so that they unfold together
+	opacity: 0;
+	transition: opacity var(--fold-duration) var(--fold-easing);
+
+	&.expanded {
+		opacity: 1;
+
+		.gauge-timer-display { width: 240px; }
+	}
 
 	.digit-timer-display {
 		background-color: #000000;
@@ -74,10 +86,11 @@ export default {
 	.gauge-timer-display {
 		position: relative;
 		background-color: #666666;
-		width: 240px;
+		width: 24px;
 		height: 24px;
 		border-radius: 10px;
 		z-index: 2;
+		transition: width var(--fold-duration) var(--fold-easing);
 
 		[class^="multiples-markers-"] {
 			position: absolute;

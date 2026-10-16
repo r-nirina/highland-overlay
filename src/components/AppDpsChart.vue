@@ -1,18 +1,14 @@
 <template>
-	<OverlayShell>
-		<RaidDps />
-	</OverlayShell>
+	<RaidDps />
 </template>
 
 <script>
-import OverlayShell from "./OverlayShell.vue"
 import RaidDps from "./RaidDps/RaidDps.vue"
 
 export default {
 	name: "AppDpsChart",
 
 	components: {
-		OverlayShell,
 		RaidDps,
 	},
 }

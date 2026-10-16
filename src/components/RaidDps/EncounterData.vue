@@ -35,8 +35,9 @@ export default {
 	gap: 4px;
 
 	.encounter-icon {
-		max-height: 56px;
-		max-width: 56px;
+		// Set by RaidDps, which folds down to this icon
+		width: var(--icon-size);
+		height: var(--icon-size);
 		padding: 8px;
 	}
 
