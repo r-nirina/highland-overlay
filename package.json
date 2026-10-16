@@ -25,41 +25,34 @@
 		"type": "git",
 		"url": "https://github.com/r-nirina/highland-overlay.git"
 	},
+	"type": "module",
+	"engines": {
+		"node": ">=24"
+	},
 	"scripts": {
-		"build": "webpack -p",
-		"watch": "webpack --watch",
-		"clean": "rm -r dist/*",
-		"test": "npm run eslint",
-		"eslint": "eslint --color src/",
-		"eslint-fix": "eslint --color --fix src/",
-		"lint": "npm run eslint-fix"
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"test": "vitest run",
+		"test:watch": "vitest"
 	},
 	"dependencies": {
-		"@babel/polyfill": "^7.4.4",
-		"core-js": "^3.1.4",
-		"vue": "^2.6.10",
-		"vuex": "^3.1.1"
+		"@fontsource/ubuntu": "^5.3.0",
+		"pinia": "^4.1.0",
+		"vue": "^3.5.44"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.5.5",
-		"@babel/preset-env": "^7.5.5",
-		"@babel/register": "^7.5.5",
-		"babel-loader": "^8.0.6",
-		"css-loader": "^2.1.0",
-		"eslint": "^5.16.0",
-		"eslint-config-standard": "^12.0.0",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-node": "^8.0.1",
-		"eslint-plugin-promise": "^4.2.1",
-		"eslint-plugin-standard": "^4.0.0",
-		"file-loader": "^3.0.1",
-		"html-webpack-plugin": "^3.2.0",
-		"node-sass": "^4.12.0",
-		"sass-loader": "^7.1.0",
-		"style-loader": "^0.23.1",
-		"vue-loader": "^15.7.1",
-		"vue-template-compiler": "^2.6.6",
-		"webpack": "^4.38.0",
-		"webpack-cli": "^3.3.6"
+		"@eslint/js": "^10.0.1",
+		"@stylistic/eslint-plugin": "^5.10.0",
+		"@vitejs/plugin-vue": "^6.0.10",
+		"eslint": "^10.12.0",
+		"eslint-plugin-compat": "^7.0.2",
+		"eslint-plugin-vue": "^10.11.1",
+		"globals": "^17.13.0",
+		"sass": "^1.105.1",
+		"vite": "^8.3.4",
+		"vitest": "^5.0.5"
 	}
 }

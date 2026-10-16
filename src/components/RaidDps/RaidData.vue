@@ -6,17 +6,18 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapState } from "pinia"
+import { useDataStore } from "../../stores/data"
 import PartyIcon from "../../assets/images/party.png"
 
 export default {
 	name: "RaidData",
 
 	computed: {
-		...mapGetters("data", [ "raidDps", "isSoloFight" ]),
+		...mapState(useDataStore, [ "raidDps", "isSoloFight" ]),
 
-    PartyIcon: function() { return PartyIcon }
-	}
+		PartyIcon: function() { return PartyIcon },
+	},
 }
 </script>
 

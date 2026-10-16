@@ -22,15 +22,15 @@ export default {
 	name: "CombatantData",
 
 	components: {
-		JobIcon
+		JobIcon,
 	},
 
 	props: {
-		name: String,
-		dps: Number,
-		job: String,
-		role: String,
-		relativeDps: Number,
+		name: { type: String, default: "" },
+		dps: { type: Number, default: null },
+		job: { type: String, default: "" },
+		role: { type: String, default: "" },
+		relativeDps: { type: Number, default: 0 },
 	},
 
 	computed: {
@@ -90,7 +90,7 @@ export default {
 				.name,
 				.dps {
 					padding: 0 6px;
-					font-weight: 100;
+					font-weight: 300;
 				}
 			}
 		}
