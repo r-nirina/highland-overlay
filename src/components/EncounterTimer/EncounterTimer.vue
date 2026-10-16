@@ -170,7 +170,7 @@ export default {
 			z-index: 0;
 			height: 100%;
 			width: 100%;
-			border-radius: 10px;
+			border-radius: 16px;
 			overflow: hidden;
 
 			.gauge-timer-bar {
