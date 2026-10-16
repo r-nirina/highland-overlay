@@ -28,7 +28,19 @@ describe("overlay-plugin", () => {
 
 			api.ready = true
 			vi.advanceTimersByTime(300)
-			expect(api.callHandler).toHaveBeenCalledWith(JSON.stringify({ call: "subscribe", events: [ "CombatData" ] }))
+			// Both arguments are required by the C# method behind OverlayPluginApi
+			expect(api.callHandler).toHaveBeenCalledWith(JSON.stringify({ call: "subscribe", events: [ "CombatData" ] }), null)
+		})
+
+		it("subscribes right away when OverlayPluginApi is already ready", async() => {
+			const api = { ready: true, callHandler: vi.fn() }
+			vi.stubGlobal("window", { location: { search: "" }, OverlayPluginApi: api })
+			const { addOverlayListener, startOverlayEvents } = await loadOverlayPlugin()
+
+			addOverlayListener("CombatData", () => {})
+			startOverlayEvents()
+
+			expect(api.callHandler).toHaveBeenCalledExactlyOnceWith(JSON.stringify({ call: "subscribe", events: [ "CombatData" ] }), null)
 		})
 
 		it("dispatches events to the listeners of their type", async() => {

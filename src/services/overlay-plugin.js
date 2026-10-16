@@ -65,6 +65,10 @@ function connectWebSocket(url) {
 function connectOverlayPluginApi() {
 	let queue = []
 
+	// OverlayPluginApi is a C# object bound by CefSharp: callHandler(string data, object callback) fails
+	// unless both arguments are passed, so send an explicit null callback
+	const callHandler = msg => window.OverlayPluginApi.callHandler(JSON.stringify(msg), null)
+
 	const waitForApi = () => {
 		if (!window.OverlayPluginApi?.ready) {
 			setTimeout(waitForApi, 300)
@@ -76,7 +80,7 @@ function connectOverlayPluginApi() {
 		const pending = queue
 		queue = null
 		for (const msg of pending) {
-			window.OverlayPluginApi.callHandler(JSON.stringify(msg))
+			callHandler(msg)
 		}
 	}
 
@@ -86,7 +90,7 @@ function connectOverlayPluginApi() {
 		if (queue) {
 			queue.push(msg)
 		} else {
-			window.OverlayPluginApi.callHandler(JSON.stringify(msg))
+			callHandler(msg)
 		}
 	}
 }
