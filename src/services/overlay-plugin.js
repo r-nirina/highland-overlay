@@ -11,6 +11,14 @@
 const subscribers = {}
 let sendMessage = null
 
+// Subscribes to the events of every listener: OverlayPlugin only sends those
+function subscription() {
+	return {
+		call: "subscribe",
+		events: Object.keys(subscribers),
+	}
+}
+
 function processEvent(msg) {
 	for (const callback of subscribers[msg.type] ?? []) {
 		callback(msg)
@@ -45,7 +53,8 @@ function connectWebSocket(url) {
 		})
 
 		ws.addEventListener("close", () => {
-			queue = []
+			// Each connection starts without any subscription: subscribe again once reconnected
+			queue = [ subscription() ]
 			// Don't spam the server with retries
 			setTimeout(connect, 300)
 		})
@@ -116,8 +125,5 @@ export function removeOverlayListener(event, callback) {
 // Register every listener before calling this: OverlayPlugin only sends the events subscribed here
 export function startOverlayEvents() {
 	sendMessage ??= connect()
-	sendMessage({
-		call: "subscribe",
-		events: Object.keys(subscribers),
-	})
+	sendMessage(subscription())
 }

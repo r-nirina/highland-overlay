@@ -65,8 +65,11 @@ describe("overlay-plugin", () => {
 	})
 
 	describe("with ?OVERLAY_WS=", () => {
-		it("connects to the WebSocket server and subscribes once connected", async() => {
-			const sockets = []
+		const subscribe = JSON.stringify({ call: "subscribe", events: [ "CombatData" ] })
+		let sockets
+
+		beforeEach(() => {
+			sockets = []
 			class FakeWebSocket {
 				constructor(url) {
 					this.url = url
@@ -81,6 +84,9 @@ describe("overlay-plugin", () => {
 			}
 			vi.stubGlobal("WebSocket", FakeWebSocket)
 			vi.stubGlobal("window", { location: { search: "?OVERLAY_WS=ws://127.0.0.1:10501/ws" } })
+		})
+
+		it("connects to the WebSocket server and subscribes once connected", async() => {
 			const { addOverlayListener, startOverlayEvents } = await loadOverlayPlugin()
 			const onCombatData = vi.fn()
 
@@ -91,10 +97,37 @@ describe("overlay-plugin", () => {
 			expect(socket.send).not.toHaveBeenCalled()
 
 			socket.listeners.open()
-			expect(socket.send).toHaveBeenCalledWith(JSON.stringify({ call: "subscribe", events: [ "CombatData" ] }))
+			expect(socket.send).toHaveBeenCalledWith(subscribe)
 
 			socket.listeners.message({ data: JSON.stringify({ type: "CombatData", isActive: "true" }) })
 			expect(onCombatData).toHaveBeenCalledWith({ type: "CombatData", isActive: "true" })
+		})
+
+		it("subscribes again once reconnected after losing the connection", async() => {
+			const { addOverlayListener, startOverlayEvents } = await loadOverlayPlugin()
+
+			addOverlayListener("CombatData", () => {})
+			startOverlayEvents()
+			sockets[0].listeners.open()
+
+			// ACT restarted
+			sockets[0].listeners.close()
+			vi.advanceTimersByTime(300)
+			sockets[1].listeners.open()
+			expect(sockets[1].send).toHaveBeenCalledExactlyOnceWith(subscribe)
+		})
+
+		it("subscribes once the server is up when it is not yet", async() => {
+			const { addOverlayListener, startOverlayEvents } = await loadOverlayPlugin()
+
+			addOverlayListener("CombatData", () => {})
+			startOverlayEvents()
+
+			// Connection refused
+			sockets[0].listeners.close()
+			vi.advanceTimersByTime(300)
+			sockets[1].listeners.open()
+			expect(sockets[1].send).toHaveBeenCalledExactlyOnceWith(subscribe)
 		})
 	})
 })
