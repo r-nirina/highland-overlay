@@ -11,6 +11,7 @@ import {
 
 export const useDataStore = defineStore("data", {
 	state: () => ({
+		hasData: false,
 		combatants: [],
 		encounter: {
 			title: "",
@@ -42,6 +43,7 @@ export const useDataStore = defineStore("data", {
 				.map(calculateRelativeDps(maxDps))
 
 			this.encounter = retrieveEncounterData(actData["Encounter"])
+			this.hasData = true
 		},
 	},
 })

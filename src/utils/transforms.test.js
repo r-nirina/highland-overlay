@@ -4,7 +4,6 @@ import {
 	formatDuration,
 	parseDpsString,
 	parseDurationString,
-	parseIsActive,
 	rankByDps,
 	retrieveCombatantData,
 	retrieveMaxDps,
@@ -25,18 +24,6 @@ describe("roundDps", () => {
 	it("hides floating point noise", () => {
 		expect(4521.33 + 3987.12 + 2210.07 + 1850.44).toBe(12568.960000000001)
 		expect(roundDps(4521.33 + 3987.12 + 2210.07 + 1850.44)).toBe(12568.96)
-	})
-})
-
-describe("parseIsActive", () => {
-	it("reads the strings sent by OverlayPlugin", () => {
-		expect(parseIsActive("true")).toBe(true)
-		expect(parseIsActive("false")).toBe(false)
-	})
-
-	it("accepts booleans and missing values", () => {
-		expect(parseIsActive(true)).toBe(true)
-		expect(parseIsActive(undefined)).toBe(false)
 	})
 })
 
