@@ -12,8 +12,8 @@ import {
 
 export const useDataStore = defineStore("data", {
 	state: () => ({
-		// Folded until the first combat data, then unfolded by each new combat, and folded / unfolded
-		// by clicking the encounter icon
+		// Folded until the first combat data, then unfolded by each new combat and folded when it ends,
+		// and folded / unfolded by clicking the encounter icon
 		isExpanded: false,
 		hasData: false,
 		// Whether ACT's encounter is in progress
@@ -50,10 +50,13 @@ export const useDataStore = defineStore("data", {
 
 			this.encounter = retrieveEncounterData(actData["Encounter"])
 
-			// OverlayPlugin sends combat data every second, in combat or not: a new combat is when it becomes active
+			// OverlayPlugin sends combat data every second, in combat or not: a new combat is when it becomes
+			// active, and the encounter ends when it becomes inactive
 			const isActive = parseIsActive(actData["isActive"])
 			if (!this.hasData || (isActive && !this.isActive)) {
 				this.isExpanded = true
+			} else if (!isActive && this.isActive) {
+				this.isExpanded = false
 			}
 			this.hasData = true
 			this.isActive = isActive
