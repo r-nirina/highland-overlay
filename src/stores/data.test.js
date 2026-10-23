@@ -1,11 +1,16 @@
-import { beforeEach, describe, expect, it } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { createPinia, setActivePinia } from "pinia"
 import snapshots from "../mocks/combat-data.json"
-import { useDataStore } from "./data"
+import { FOLD_DELAY, useDataStore } from "./data"
 
 describe("data store", () => {
 	beforeEach(() => {
+		vi.useFakeTimers()
 		setActivePinia(createPinia())
+	})
+
+	afterEach(() => {
+		vi.useRealTimers()
 	})
 
 	it("starts empty", () => {
@@ -44,24 +49,67 @@ describe("data store", () => {
 		store.toggleExpanded()
 
 		store.updateData(outOfCombat)
+		vi.advanceTimersByTime(FOLD_DELAY)
 		expect(store.isExpanded).toBe(false)
 
 		store.updateData(inCombat)
 		expect(store.isExpanded).toBe(true)
 	})
 
-	it("folds when the encounter ends", () => {
+	it("folds a few seconds after the encounter ends", () => {
 		const store = useDataStore()
 		const inCombat = { ...snapshots[1], isActive: "true" }
 		const outOfCombat = { ...snapshots[1], isActive: "false" }
 		store.updateData(inCombat)
-		expect(store.isExpanded).toBe(true)
-
 		store.updateData(inCombat)
+		vi.advanceTimersByTime(FOLD_DELAY)
 		expect(store.isExpanded).toBe(true)
 
 		store.updateData(outOfCombat)
+		vi.advanceTimersByTime(FOLD_DELAY - 1)
+		expect(store.isExpanded).toBe(true)
+
+		vi.advanceTimersByTime(1)
 		expect(store.isExpanded).toBe(false)
+	})
+
+	it("doesn't postpone the fold while no combat data changes", () => {
+		const store = useDataStore()
+		const inCombat = { ...snapshots[1], isActive: "true" }
+		const outOfCombat = { ...snapshots[1], isActive: "false" }
+		store.updateData(inCombat)
+		store.updateData(outOfCombat)
+		vi.advanceTimersByTime(FOLD_DELAY / 2)
+		store.updateData(outOfCombat)
+		vi.advanceTimersByTime(FOLD_DELAY / 2)
+
+		expect(store.isExpanded).toBe(false)
+	})
+
+	it("doesn't fold when a new combat starts meanwhile", () => {
+		const store = useDataStore()
+		const inCombat = { ...snapshots[1], isActive: "true" }
+		const outOfCombat = { ...snapshots[1], isActive: "false" }
+		store.updateData(inCombat)
+		store.updateData(outOfCombat)
+		vi.advanceTimersByTime(FOLD_DELAY / 2)
+		store.updateData(inCombat)
+		vi.advanceTimersByTime(FOLD_DELAY)
+
+		expect(store.isExpanded).toBe(true)
+	})
+
+	it("doesn't fold when the user clicks meanwhile", () => {
+		const store = useDataStore()
+		const inCombat = { ...snapshots[1], isActive: "true" }
+		const outOfCombat = { ...snapshots[1], isActive: "false" }
+		store.updateData(inCombat)
+		store.updateData(outOfCombat)
+		store.toggleExpanded()
+		store.toggleExpanded()
+		vi.advanceTimersByTime(FOLD_DELAY)
+
+		expect(store.isExpanded).toBe(true)
 	})
 
 	it("stays unfolded by the user once the encounter has ended", () => {
@@ -70,8 +118,10 @@ describe("data store", () => {
 		const outOfCombat = { ...snapshots[1], isActive: "false" }
 		store.updateData(inCombat)
 		store.updateData(outOfCombat)
+		vi.advanceTimersByTime(FOLD_DELAY)
 		store.toggleExpanded()
 		store.updateData(outOfCombat)
+		vi.advanceTimersByTime(FOLD_DELAY)
 
 		expect(store.isExpanded).toBe(true)
 	})
@@ -80,6 +130,7 @@ describe("data store", () => {
 		const store = useDataStore()
 		store.updateData({ ...snapshots[1], isActive: "false" })
 		store.updateData({ ...snapshots[1], isActive: "false" })
+		vi.advanceTimersByTime(FOLD_DELAY)
 
 		expect(store.isExpanded).toBe(true)
 	})

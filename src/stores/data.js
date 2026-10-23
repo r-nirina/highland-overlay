@@ -10,10 +10,20 @@ import {
 	parseIsActive,
 } from "../utils/transforms"
 
+// How long the overlay stays unfolded once the encounter has ended, to read its results
+export const FOLD_DELAY = 10000
+
+let foldTimeout = null
+
+function cancelFold() {
+	clearTimeout(foldTimeout)
+	foldTimeout = null
+}
+
 export const useDataStore = defineStore("data", {
 	state: () => ({
-		// Folded until the first combat data, then unfolded by each new combat and folded when it ends,
-		// and folded / unfolded by clicking the encounter icon
+		// Folded until the first combat data, then unfolded by each new combat and folded a few seconds after
+		// it ends, and folded / unfolded by clicking the encounter icon
 		isExpanded: false,
 		hasData: false,
 		// Whether ACT's encounter is in progress
@@ -54,15 +64,21 @@ export const useDataStore = defineStore("data", {
 			// active, and the encounter ends when it becomes inactive
 			const isActive = parseIsActive(actData["isActive"])
 			if (!this.hasData || (isActive && !this.isActive)) {
+				cancelFold()
 				this.isExpanded = true
 			} else if (!isActive && this.isActive) {
-				this.isExpanded = false
+				cancelFold()
+				foldTimeout = setTimeout(() => {
+					this.isExpanded = false
+				}, FOLD_DELAY)
 			}
 			this.hasData = true
 			this.isActive = isActive
 		},
 
 		toggleExpanded() {
+			// The user takes over: a pending fold would undo their choice
+			cancelFold()
 			this.isExpanded = !this.isExpanded
 		},
 	},
